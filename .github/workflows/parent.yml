@@ -7,7 +7,7 @@ on:
 
 jobs:
   child_job:
-    uses: ./.github/workflows/child.yaml
+    uses: ./.github/workflows/child.yml
     with:
       environment: ${{ github.event.inputs.environment }}
       random_value: ${{ vars.RANDOM_VALUE }}
