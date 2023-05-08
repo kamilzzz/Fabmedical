@@ -13,3 +13,4 @@ jobs:
       random_value: ${{ vars.RANDOM_VALUE }}
     secrets:
       random_secret: ${{ secrets.RANDOM_SECRET }}
+      random_value_as_secret: ${{ vars.RANDOM_VALUE }}
