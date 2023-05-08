@@ -12,7 +12,9 @@ on:
     secrets:
       random_secret:
         required: true
-
+      random_value_as_secret:
+        required: true
+        
 jobs:
   child:
     runs-on: ubuntu-latest
@@ -28,3 +30,4 @@ jobs:
           echo ${{ vars.RANDOM_VALUE }}
           echo ${{ inputs.random_value }}
           echo ${{ secrets.random_secret }}
+          echo ${{ secrets.random_value_as_secret }}
