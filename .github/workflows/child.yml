@@ -1,0 +1,29 @@
+name: 'child'
+on:
+  workflow_call:
+    inputs:
+      gh_environment:
+        required: true
+        type: string
+      random_value:
+        required: true
+        type: string
+
+    secrets:
+      random_secret:
+        required: true
+
+jobs:
+  child:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Print values
+        id: print
+        run: |
+          echo ${{ inputs.random_value }}
+          echo ${{ secrets.random_secret }}
