@@ -25,5 +25,5 @@ jobs:
       - name: Print values
         id: print
         run: |
-          echo ${{ inputs.random_value }}
+          echo ${{ vars.RANDOM_VALUE }}
           echo ${{ secrets.random_secret }}
