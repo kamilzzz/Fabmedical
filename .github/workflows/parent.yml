@@ -1,0 +1,15 @@
+name: 'parent'
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+
+jobs:
+  child_job:
+    uses: ./.github/workflows/child.yaml
+    with:
+      environment: ${{ github.event.inputs.environment }}
+      random_value: ${{ vars.RANDOM_VALUE }}
+    secrets:
+      random_secret: ${{ secrets.RANDOM_SECRET }}
