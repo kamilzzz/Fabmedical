@@ -2,7 +2,7 @@ name: 'child'
 on:
   workflow_call:
     inputs:
-      gh_environment:
+      environment:
         required: true
         type: string
       random_value:
