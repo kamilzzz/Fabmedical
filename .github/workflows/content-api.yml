@@ -25,39 +25,27 @@ env:
 
 # Jobs define the actions that take place when code is pushed to the main branch
 jobs:
-
   build-and-publish-docker-image:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
     # Checkout the repo
     - uses: actions/checkout@master
-
-    - name: Build and push an image to container registry
-      uses: docker/build-push-action@v1
-      with:
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
-        path: ${{ env.dockerfilePath  }}
-        dockerfile: '${{ env.dockerfilePath }}/Dockerfile'
-        registry: ${{ env.containerRegistry }}
-        repository: ${{ env.imageRepository }}
-        tags: ${{ env.tag }},latest
-
-    # - uses: Azure/aks-set-context@v1
-    #   with:
-    #     creds: '${{ secrets.AZURE_CREDENTIALS }}'
-    #     cluster-name: '${{ env.clusterName }}'
-    #     resource-group: '${{ env.resourceGroupName }}'
-        
-    # - name: Deploy to AKS
-    #   uses: azure/k8s-deploy@v1
-    #   with:
-    #     manifests: |
-    #       api.deployment.yml
-    #       api.service.yml
-    #     images: |
-    #       ${{ env.containerRegistry }}.azurecr.io/${{ env.imageRepository }}:${{ env.tag }}
-    #     imagepullsecrets: |
-    #       ingress-demo-secret
-    #     namespace: ingress-demo
+  deployment-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: deploy
+      run: echo 'Deploying dev'
+  deployment-test:
+    runs-on: ubuntu-latest
+    environment: test
+    steps:
+    - name: deploy
+      run: echo 'Deploying test'
+  deployment-prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - name: deploy
+      run: echo 'Deploying prod'
