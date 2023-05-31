@@ -38,12 +38,14 @@ jobs:
     - name: deploy
       run: echo 'Deploying dev'
   deployment-test:
+    needs: deployment-dev
     runs-on: ubuntu-latest
     environment: test
     steps:
     - name: deploy
       run: echo 'Deploying test'
   deployment-prod:
+    needs: deployment-test
     runs-on: ubuntu-latest
     environment: prod
     steps:
